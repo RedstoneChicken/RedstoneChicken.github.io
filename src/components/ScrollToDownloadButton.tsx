@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Download } from 'lucide-react';
@@ -60,13 +59,7 @@ const ScrollToDownloadButton = () => {
     <Button
       onClick={scrollToDownload}
       size="icon"
-      className="fixed bottom-6 left-6 z-[9998] bg-primary hover:bg-primary/90 text-primary-foreground rounded-full w-14 h-14 shadow-2xl border border-primary/30 backdrop-blur-sm animate-fade-in hover:scale-110 transition-all duration-300"
-      style={{ 
-        position: 'fixed',
-        bottom: '24px',
-        left: '24px',
-        zIndex: 9998
-      }}
+      className="fixed bottom-6 left-6 z-50 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full w-14 h-14 shadow-2xl border border-primary/30 backdrop-blur-sm animate-fade-in hover:scale-110 transition-all duration-300"
       aria-label="Scroll to downloads"
     >
       <Download className="h-6 w-6" />

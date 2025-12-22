@@ -1,6 +1,10 @@
 
 import { useState } from "react";
-import CustomImageDialog from "@/components/CustomImageDialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Maximize } from "lucide-react";
 
 interface ImageGalleryProps {
@@ -15,14 +19,13 @@ const ImageGallery = ({
   maxWidth = "100%"
 }: ImageGalleryProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   
   if (variant === "inline") {
     return (
       <div className="my-6 mx-auto" style={{ maxWidth }}>
-        <CustomImageDialog
-          imageUrl={images[activeIndex].url}
-          alt={images[activeIndex].alt}
-          trigger={
+        <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+          <DialogTrigger asChild>
             <div className="glass-panel rounded-lg overflow-hidden cursor-pointer hover:ring-2 hover:ring-primary/40 hover:border-primary border border-white/10 transition-all">
               <div className="aspect-video relative">
                 <img 
@@ -38,8 +41,17 @@ const ImageGallery = ({
                 </div>
               </div>
             </div>
-          }
-        />
+          </DialogTrigger>
+          <DialogContent className="max-w-7xl w-[95vw] h-[95vh] p-0 bg-background/95 backdrop-blur-md overflow-hidden">
+            <div className="w-full h-full flex items-center justify-center p-4">
+              <img 
+                src={images[activeIndex].url} 
+                alt={images[activeIndex].alt} 
+                className="max-w-full max-h-full object-contain"
+              />
+            </div>
+          </DialogContent>
+        </Dialog>
 
         {images.length > 1 && (
           <div className="flex gap-2 mt-2 overflow-x-auto pb-2 snap-x scrollbar-thin">
@@ -67,11 +79,10 @@ const ImageGallery = ({
   }
   
   return (
-    <div className="space-y-4">
-      <CustomImageDialog
-        imageUrl={images[activeIndex].url}
-        alt={images[activeIndex].alt}
-        trigger={
+    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+      <div className="space-y-4">
+        {/* Main featured image */}
+        <DialogTrigger asChild>
           <div className="glass-panel rounded-lg overflow-hidden cursor-pointer hover:ring-2 hover:ring-primary border border-white/10 hover:border-primary transition-all">
             <div className="aspect-video relative">
               <img 
@@ -87,31 +98,41 @@ const ImageGallery = ({
               </div>
             </div>
           </div>
-        }
-      />
-      
-      <div className="overflow-x-auto pb-2 scrollbar-thin">
-        <div className="flex gap-2 snap-x">
-          {images.map((image, index) => (
-            <div 
-              key={index}
-              className={`cursor-pointer transition-all rounded-lg overflow-hidden flex-shrink-0 border ${
-                activeIndex === index ? 'border-primary' : 'border-white/5 hover:border-primary'
-              }`}
-              onClick={() => setActiveIndex(index)}
-            >
-              <div className="aspect-square w-16">
-                <img 
-                  src={image.url} 
-                  alt={image.alt} 
-                  className="w-full h-full object-cover"
-                />
+        </DialogTrigger>
+        
+        {/* Image thumbnails */}
+        <div className="overflow-x-auto pb-2 scrollbar-thin">
+          <div className="flex gap-2 snap-x">
+            {images.map((image, index) => (
+              <div 
+                key={index}
+                className={`cursor-pointer transition-all rounded-lg overflow-hidden flex-shrink-0 border ${
+                  activeIndex === index ? 'border-primary' : 'border-white/5 hover:border-primary'
+                }`}
+                onClick={() => setActiveIndex(index)}
+              >
+                <div className="aspect-square w-16">
+                  <img 
+                    src={image.url} 
+                    alt={image.alt} 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+      <DialogContent className="max-w-7xl w-[95vw] h-[95vh] p-0 bg-background/95 backdrop-blur-md overflow-hidden">
+        <div className="w-full h-full flex items-center justify-center p-4">
+          <img 
+            src={images[activeIndex].url} 
+            alt={images[activeIndex].alt} 
+            className="max-w-full max-h-full object-contain"
+          />
+        </div>
+      </DialogContent>
+    </Dialog>
   );
 };
 

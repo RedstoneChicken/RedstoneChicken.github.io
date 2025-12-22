@@ -1,4 +1,3 @@
-
 import { useCallback, useEffect, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import type { ProjectVideo } from '@/hooks/useProjectVideos';
@@ -118,7 +117,7 @@ const ProjectVideoCarousel = ({ videos }: ProjectVideoCarouselProps) => {
             onNavigate={navigateVideo}
           />
 
-          {/* Embla Carousel Container - Centered alignment */}
+          {/* Embla Carousel Container - with extra padding for scale transform */}
           <div 
             className="overflow-hidden rounded-xl cursor-grab active:cursor-grabbing" 
             ref={emblaRef}
@@ -126,7 +125,7 @@ const ProjectVideoCarousel = ({ videos }: ProjectVideoCarouselProps) => {
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
           >
-            <div className="flex gap-3 md:gap-4 px-4 py-2">
+            <div className="flex gap-3 md:gap-4 pl-4 pr-48 py-2">
               {videos.map((video, index) => (
                 <div key={video.id} className="flex-none">
                   <VideoThumbnailItem
