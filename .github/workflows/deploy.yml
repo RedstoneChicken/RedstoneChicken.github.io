@@ -2,15 +2,13 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ "main" ] # Runs automatically every time you push to main
+    branches: [ "main" ]
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment to prevent conflicts
 concurrency:
   group: 'pages'
   cancel-in-progress: true
@@ -25,11 +23,11 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22 # Updated to Node 22 to clear GitHub's deprecation warnings
           cache: 'npm'
 
       - name: Install Project Dependencies
-        run: npm ci # Ensures a clean, predictable install for production
+        run: npm ci
 
       - name: Compile TanStack/Vite App
         run: npm run build
@@ -37,9 +35,8 @@ jobs:
       - name: Package Static Build Assets
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'dist' # Changed from .output/public to target your actual React app folder
+          path: '.output/public' # Reverted back: TanStack Start wraps Vite and outputs to here
 
       - name: Publish Live to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
