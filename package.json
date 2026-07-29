@@ -2,7 +2,7 @@
   "name": "tanstack_start_ts",
   "private": true,
   "sideEffects": false,
-  "homepage": "https://redstonechicken.github.io/"
+  "homepage": "https://redstonechicken.github.io/",
   "type": "module",
   "scripts": {
    "predeploy": "npm run build",
