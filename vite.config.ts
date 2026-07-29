@@ -4,8 +4,7 @@ export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
   },
-  // Inject your custom Vite settings safely here:
   vite: {
-    base: '/RedstoneChicken/redstonechicken.github.io/', // Must match your exact repository name on GitHub
+    base: '/', // Keeps asset routes pointing directly to the root domain
   }
 });
