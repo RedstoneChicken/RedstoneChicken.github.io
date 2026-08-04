@@ -1,0 +1,11 @@
+{
+  "name": "cade-portfolio-static",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cade Leeming portfolio — plain HTML, CSS and JS. No build step, no framework.",
+  "scripts": {
+    "dev": "npx --yes serve . -l 3000",
+    "start": "npx --yes serve . -l 3000",
+    "preview": "npx --yes serve . -l 3000"
+  }
+}

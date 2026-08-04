@@ -1,29 +1,28 @@
-# Welcome to your Lovable project
+# Cade Leeming — static portfolio
 
-This project was built with [Lovable](https://lovable.dev).
+Plain HTML, CSS and JavaScript. No React, no Vite, no build step.
 
-## Build with Lovable
-
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
+```
+index.html      the whole page (all content lives here)
+css/styles.css  hand-written stylesheet — theme tokens, layout, animations
+js/main.js      behaviour: scroll progress, reveals, nav, tabs, 3D tilt, rotator, copy-email
+assets/         images (work cards + YouTube banner/avatar)
+favicon.ico
 ```
 
-## Built with
+## Run it
 
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
+```bash
+npm start          # serves on http://localhost:3000
+```
+
+Any static server works — `python3 -m http.server`, VS Code Live Server, or just
+opening `index.html` in a browser (paths are relative, so file:// works too).
+
+## Deploy
+
+Upload the contents of this folder to any static host: Netlify, Vercel,
+GitHub Pages, Cloudflare Pages, or plain nginx/Apache. Nothing to compile.
+
+Fonts (Syne + Outfit) load from Google Fonts; the YouTube thumbnails load from
+i.ytimg.com, so those two need internet access.
